@@ -1,4 +1,5 @@
 from tkinter import *
+import tkinter.messagebox as tmsg
 import csv
 
 root = Tk()
@@ -25,8 +26,8 @@ def get_data():
         # Write user input data
         writer.writerow({'Username': username_data, 'Email': email_data, 'Password': password_data})
 
-        # Print confirmation message to console
-        print("Submited successfully!")
+        # Print confirmation message 
+        tmsg.showinfo('Information', 'Your form submited successfully!')
 
     # Clear Entry widgets
     name.delete(0, END)

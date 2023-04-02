@@ -23,8 +23,4 @@ can_widget.create_arc(2,3, 566, 435)
 can_widget.create_polygon(4,54,323,345,123,67, 34,54)
 
 
-
-
-
-
 root.mainloop()
