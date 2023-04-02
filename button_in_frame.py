@@ -15,8 +15,4 @@ e2 = ttk.Entry(root).grid(column=1,row=1)
 submit = ttk.Button(root, text="Submit").grid(column=1, row=3)
 
 
-
-
-
-
 root.mainloop()
