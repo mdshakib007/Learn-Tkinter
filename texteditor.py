@@ -262,11 +262,62 @@ root.config(menu=main_menu)  # done configuration of second menu bar
 
 # menu 3
 m3 = Menu(main_menu, tearoff=0)  # this is the vertical menubar
-m3.add_command(label='Change Background', command=change_bg)
-m3.add_command(label='Change Font Color', command=font_color)
+m3.add_command(label='Dark Mode', command=change_bg)
+
+font_color_change = Menu(m3, tearoff=0) # color change menu start
+m3.add_cascade(label='Font Color', menu=font_color_change)
+font_color_change.add_command(label='White')
+font_color_change.add_command(label='Black')
+font_color_change.add_command(label='Grey')
+font_color_change.add_command(label='Red')
+font_color_change.add_command(label='Green')
+font_color_change.add_command(label='Blue')
+font_color_change.add_command(label='Skyblue')
+font_color_change.add_command(label='Yellow') # ends
+
 m3.add_separator()
-m3.add_command(label='Font', command=font)
-m3.add_command(label='Size', command=size)
+
+font_menu = Menu(m3, tearoff=0)
+m3.add_cascade(label='Font', menu=font_menu) # submenu of font
+font_menu.add_command(label='Arial (English)')
+font_menu.add_command(label='Calibri (English)')
+font_menu.add_command(label='Courier New (English)')
+font_menu.add_command(label='Garamond (English)')
+font_menu.add_command(label='Georgia (English)')
+font_menu.add_command(label='Helvetica (English)')
+font_menu.add_command(label='monospace (Recomend Programming)')
+font_menu.add_command(label='Serif (English)')
+font_menu.add_command(label='Verdana (English)')
+font_menu.add_command(label='Tahoma (English)') # english submenu ends
+font_menu.add_command(label='SolaimanLipi (বাংলা)')
+font_menu.add_command(label='Nikosh (বাংলা)')
+font_menu.add_command(label='Siyamrupali (বাংলা)')
+font_menu.add_command(label='Vrinda Lohit Bengali (বাংলা)')
+font_menu.add_command(label='Mukti Narrow (বাংলা)')
+font_menu.add_command(label='Kalpurush (বাংলা)') #submenu ends
+
+font_size = Menu(m3, tearoff=0) # font size menu
+m3.add_cascade(label='Size', menu=font_size) 
+font_size.add_command(label='8')
+font_size.add_command(label='9')
+font_size.add_command(label='10')
+font_size.add_command(label='11')
+font_size.add_command(label='12')
+font_size.add_command(label='14')
+font_size.add_command(label='15')
+font_size.add_command(label='16')
+font_size.add_command(label='18')
+font_size.add_command(label='20')
+font_size.add_command(label='22')
+font_size.add_command(label='25')
+font_size.add_command(label='27')
+font_size.add_command(label='30')
+font_size.add_command(label='35')
+font_size.add_command(label='40')
+font_size.add_command(label='46')
+font_size.add_command(label='50')
+font_size.add_command(label='60') # size menu ends
+
 m3.add_command(label='Bold', command=bold)
 m3.add_command(label='Italic', command=italic)
 m3.add_command(label='Underline', command=underline)
