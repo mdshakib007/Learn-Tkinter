@@ -1,5 +1,6 @@
 from tkinter import *
 import tkinter.messagebox as tmsg
+from tkinter import colorchooser, font
 from tkinter.filedialog import askopenfilename, asksaveasfilename
 import os
 
@@ -121,8 +122,8 @@ def share():
 
 def undo():
     try:
-        text_area.edit_undo() # just i defined undo=True in text_area 
-    except: #this undo and redo method show error when nothing to undo and redo.
+        text_area.edit_undo()  # just i defined undo=True in text_area
+    except:  # this undo and redo method show error when nothing to undo and redo.
         tmsg.showerror('Error', 'Nothing to Undo!')
 
 
@@ -155,31 +156,41 @@ def expand():
 
 
 def change_bg():
-    pass
+    color = colorchooser.askcolor()
+    # Code to set selected color
+    text_area.config(bg=color[1])
 
 
 def font_color():
-    pass
+    color = colorchooser.askcolor()
+    text_area.config(fg=color[1])
 
 
-def font():
-    pass
+def select_font(font):
+    text_area.configure(font=font)
+
+# def bangla_font():
+#     ft = Font.Font(family='Nikosh', size=12)
+#     text_area.configure(font=ft)
 
 
-def size():
-    pass
+def f_size(size):
+    global text_area
+    font_tuple = font.Font(font=text_area['font'])
+    font_tuple.configure(size=size)
+    text_area.configure(font=font_tuple)
 
 
 def bold():
-    pass
+    text_area.config(font='Arial 14 bold')
 
 
 def italic():
-    pass
+    text_area.config(font='Arial 14 italic')
 
 
 def underline():
-    pass
+    text_area.config(font='Arial 14 underline')
 
 
 def welcome():
@@ -188,15 +199,18 @@ def welcome():
 
 
 def doc():
-    tmsg.showinfo('Documentation', 'We have no Documantation at this time,\nBut Shakib is working on it!')
+    tmsg.showinfo(
+        'Documentation', 'We have no Documantation at this time,\nBut Shakib is working on it!')
 
 
 def tutorial():
-    tmsg.askyesnocancel('Tutorial', 'Follow me on GitHub to get tutorial-\nlink: https://github.com/mdshakib007')
+    tmsg.askyesnocancel(
+        'Tutorial', 'Follow me on GitHub to get tutorial-\nlink: https://github.com/mdshakib007')
 
 
 def source():
-    tmsg.askquestion('Source Code', 'Source Code: https://github.com/mdshakib007/Tkinter-Projects/blob/master/texteditor.py')
+    tmsg.askquestion(
+        'Source Code', 'Source Code: https://github.com/mdshakib007/Tkinter-Projects/blob/master/texteditor.py')
 
 
 def github():
@@ -204,15 +218,18 @@ def github():
 
 
 def report():
-    tmsg.askokcancel('Report an issue', 'Report an issue: shakibahmed00777@gmail.com')
+    tmsg.askokcancel('Report an issue',
+                     'Report an issue: shakibahmed00777@gmail.com')
 
 
 def update():
-    tmsg.showerror('Check for updates', 'Nothing to update!\nyou are using the latest version of NotePaaD!')
+    tmsg.showerror('Check for updates',
+                   'Nothing to update!\nyou are using the latest version of NotePaaD!')
 
 
 def about():
-    tmsg.askokcancel('About NotePaaD', 'This is a simple text editor, made with python(Tkinter), by Md Shakib Ahmed.')
+    tmsg.askokcancel(
+        'About NotePaaD', 'This is a simple text editor, made with python(Tkinter), by Md Shakib Ahmed.')
 
 
 root = Tk()
@@ -239,7 +256,7 @@ m1.add_separator()
 # 'quit' and 'root.destroy' is same
 m1.add_command(label='Exit', command=root.destroy)
 
-main_menu.add_cascade(label='File', menu=m1, font='lucida 10 bold')
+main_menu.add_cascade(label='File', menu=m1)
 root.config(menu=main_menu)  # done configuration of first menu bar
 
 # menu 2
@@ -257,74 +274,74 @@ m2.add_separator()
 # 'quit' and 'root.destroy' is same
 m2.add_command(label='Close Editor', command=quit)
 
-main_menu.add_cascade(label='Edit', menu=m2, font='lucida 10 bold')
+main_menu.add_cascade(label='Edit', menu=m2)
 root.config(menu=main_menu)  # done configuration of second menu bar
 
 # menu 3
 m3 = Menu(main_menu, tearoff=0)  # this is the vertical menubar
-m3.add_command(label='Dark Mode', command=change_bg)
-
-font_color_change = Menu(m3, tearoff=0) # color change menu start
-m3.add_cascade(label='Font Color', menu=font_color_change)
-font_color_change.add_command(label='White')
-font_color_change.add_command(label='Black')
-font_color_change.add_command(label='Grey')
-font_color_change.add_command(label='Red')
-font_color_change.add_command(label='Green')
-font_color_change.add_command(label='Blue')
-font_color_change.add_command(label='Skyblue')
-font_color_change.add_command(label='Yellow') # ends
-
+m3.add_command(label='Change Background', command=change_bg)
+m3.add_command(label='Font Color', command=font_color)
 m3.add_separator()
 
 font_menu = Menu(m3, tearoff=0)
-m3.add_cascade(label='Font', menu=font_menu) # submenu of font
-font_menu.add_command(label='Arial (English)')
-font_menu.add_command(label='Calibri (English)')
-font_menu.add_command(label='Courier New (English)')
-font_menu.add_command(label='Garamond (English)')
-font_menu.add_command(label='Georgia (English)')
-font_menu.add_command(label='Helvetica (English)')
-font_menu.add_command(label='monospace (Recomend Programming)')
-font_menu.add_command(label='Serif (English)')
-font_menu.add_command(label='Verdana (English)')
-font_menu.add_command(label='Tahoma (English)') # english submenu ends
+m3.add_cascade(label='Font', menu=font_menu)  # submenu of font
+font_menu.add_command(label='Arial (English)',
+                      command=lambda: select_font('Arial'))
+font_menu.add_command(label='Calibri (English)',
+                      command=lambda: select_font('Calibri'))
+font_menu.add_command(label='Courier New (English)',
+                      command=lambda: select_font('Courier'))
+font_menu.add_command(label='Garamond (English)',
+                      command=lambda: select_font('Garamond'))
+font_menu.add_command(label='Georgia (English)',
+                      command=lambda: select_font('Georgia'))
+font_menu.add_command(label='Helvetica (English)',
+                      command=lambda: select_font('Helvetica'))
+font_menu.add_command(label='monospace (Recomend Programming)',
+                      command=lambda: select_font('monospace'))
+font_menu.add_command(label='Serif (English)',
+                      command=lambda: select_font('Serif'))
+font_menu.add_command(label='Verdana (English)',
+                      command=lambda: select_font('Verdana'))
+font_menu.add_command(label='Tahoma (English)', command=lambda: select_font(
+    'Tahoma'))  # english submenu ends
 font_menu.add_command(label='SolaimanLipi (বাংলা)')
 font_menu.add_command(label='Nikosh (বাংলা)')
 font_menu.add_command(label='Siyamrupali (বাংলা)')
 font_menu.add_command(label='Vrinda Lohit Bengali (বাংলা)')
 font_menu.add_command(label='Mukti Narrow (বাংলা)')
-font_menu.add_command(label='Kalpurush (বাংলা)') #submenu ends
+font_menu.add_command(label='Kalpurush (বাংলা)')  # submenu ends
 
-font_size = Menu(m3, tearoff=0) # font size menu
-m3.add_cascade(label='Size', menu=font_size) 
-font_size.add_command(label='8')
-font_size.add_command(label='9')
-font_size.add_command(label='10')
-font_size.add_command(label='11')
-font_size.add_command(label='12')
-font_size.add_command(label='14')
-font_size.add_command(label='15')
-font_size.add_command(label='16')
-font_size.add_command(label='18')
-font_size.add_command(label='20')
-font_size.add_command(label='22')
-font_size.add_command(label='25')
-font_size.add_command(label='27')
-font_size.add_command(label='30')
-font_size.add_command(label='35')
-font_size.add_command(label='40')
-font_size.add_command(label='46')
-font_size.add_command(label='50')
-font_size.add_command(label='60') # size menu ends
+font_size = Menu(m3, tearoff=0)  # font size menu
+m3.add_cascade(label='Size', menu=font_size)
+font_size.add_command(label='8', command=lambda: f_size(8))
+font_size.add_command(label='9', command=lambda: f_size(9))
+font_size.add_command(label='10', command=lambda: f_size(10))
+font_size.add_command(label='11', command=lambda: f_size(11))
+font_size.add_command(label='12', command=lambda: f_size(12))
+font_size.add_command(label='14', command=lambda: f_size(14))
+font_size.add_command(label='15', command=lambda: f_size(15))
+font_size.add_command(label='16', command=lambda: f_size(16))
+font_size.add_command(label='18', command=lambda: f_size(18))
+font_size.add_command(label='20', command=lambda: f_size(20))
+font_size.add_command(label='22', command=lambda: f_size(22))
+font_size.add_command(label='25', command=lambda: f_size(25))
+font_size.add_command(label='27', command=lambda: f_size(27))
+font_size.add_command(label='30', command=lambda: f_size(30))
+font_size.add_command(label='35', command=lambda: f_size(35))
+font_size.add_command(label='40', command=lambda: f_size(40))
+font_size.add_command(label='46', command=lambda: f_size(46))
+font_size.add_command(label='50', command=lambda: f_size(50))
+font_size.add_command(label='60', command=lambda: f_size(60))  # size menu ends
 
+m3.add_separator()
 m3.add_command(label='Bold', command=bold)
 m3.add_command(label='Italic', command=italic)
 m3.add_command(label='Underline', command=underline)
 m3.add_separator()
 m3.add_command(label='Close', command=quit)
 
-main_menu.add_cascade(label='Selection', menu=m3, font='lucida 10 bold')
+main_menu.add_cascade(label='Selection', menu=m3)
 root.config(menu=main_menu)  # done configuration of third menu bar
 
 # menu 4
@@ -342,7 +359,7 @@ m4.add_command(label='Check For Updates...', command=update)
 m4.add_separator()
 m4.add_command(label='About', command=about)
 
-main_menu.add_cascade(label='Help', menu=m4, font='lucida 10 bold')
+main_menu.add_cascade(label='Help', menu=m4)
 root.config(menu=main_menu)  # done configuration of 4th menu bar
 
 

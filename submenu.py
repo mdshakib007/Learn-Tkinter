@@ -6,9 +6,6 @@ root = Tk()
 menu = Menu(root)
 root.config(menu=menu)
 
-# create the File menu and add it to the top-level menu
-file_menu = Menu(menu)
-
 # create the Edit menu and add it to the top-level menu
 edit_menu = Menu(menu)
 menu.add_cascade(label="Edit", menu=edit_menu)
