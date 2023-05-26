@@ -169,31 +169,33 @@ def font_color():
 def select_font(font):
     text_area.configure(font=font)
 
-# def bangla_font():
-#     ft = Font.Font(family='Nikosh', size=12)
-#     text_area.configure(font=ft)
+
+def bangla_font():  # tkinter cannot support bangla, for supporting bangla we need font module
+    ft = font.Font(family='Nikosh', size=12)
+    text_area.configure(font=ft)
 
 
 def f_size(size):
+    # to change the font size we defined the function
     global text_area
     font_tuple = font.Font(font=text_area['font'])
     font_tuple.configure(size=size)
     text_area.configure(font=font_tuple)
 
 
-def bold():
+def bold():  # to get bold text
     text_area.config(font='Arial 14 bold')
 
 
-def italic():
+def italic():  # to get italic text
     text_area.config(font='Arial 14 italic')
 
 
-def underline():
+def underline():  # to underline text
     text_area.config(font='Arial 14 underline')
 
 
-def welcome():
+def welcome():  # show the welcome message
     tmsg.showinfo('Welcome Message',
                   'Welcome to this text editor!\n\nShakib is developing this.\n\nThis is not completed yet!')
 

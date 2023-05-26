@@ -37,7 +37,7 @@ def get_data():
 #welcome message
 welcome = Label(root, text='Welcome to the Dance-Mania!',
                 borderwidth=50, bg='skyblue', font=('Serif', 20))
-welcome.grid(row=0, column=0, columnspan=2, padx=50, pady=20)
+welcome.grid(row=0, column=0, columnspan=3, padx=50, pady=20)
 
 #labels of the entry
 Label(root, text='Username').grid(row=1, column=0)
@@ -45,11 +45,11 @@ Label(root, text='Email').grid(row=2, column=0)
 Label(root, text='Password').grid(row=3, column=0)
 
 #entries
-name = Entry(root)
+name = Entry(root, width=50)
 name.grid(row=1, column=1)
-email_entry = Entry(root)
+email_entry = Entry(root, width=50)
 email_entry.grid(row=2, column=1)
-password = Entry(root, show='*')
+password = Entry(root, show='*', width=50)
 password.grid(row=3, column=1)
 
 #buttons
